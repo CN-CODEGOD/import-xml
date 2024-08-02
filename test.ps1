@@ -106,6 +106,6 @@ $param5=[hashtable]@{
   color='red'
 }
     $test=[test]::new(1,2,(1,2,3),$param4,$param5)
-    $test|ConvertTo-Xml -as Stream|clip
+    $test|Get-Member
     
     

@@ -28,9 +28,41 @@ database
 
 </Property>
     
-<Property Name="param5" Type="System.Collections.Hashtable">
+<Property Name="param5" Type="">
 
-<key name=color>red</key>
-<key name=type>fruit</key>
-<key name=name>apple</key>
+<key name="color">red</key>
+<key name="type">fruit</key>
+<key name="name">apple</key>
+</Property>
+<property name= "param6" type="road">
+<property name= "roadcoordinate" type ="roadcoordinate">
+<property name="roadcoordiate1" type = "System.Numerics.Vector3">
+<property name="x" type="system.int32">
+<value>1</value>
+</property>
+<property name="y" type="system.int32">
+<value>1</value>
+</property>
+<property name="z" type="system.int32">
+<value>1</value>
+</property>
+</property>
+<property name= "roadcoordinate2" type = "System.Numerics.Vector3">
+
+<property name="x" type="system.int32">
+<value>2</value>
+</property>
+<property name="y" type="system.int32">
+<value>2</value>
+</property>
+<property name="z" type="system.int32">
+<value>3</value>
+</property>
+</property>
+</property>
+<property name="id"></property>
+<property name="dimension"></property>
+<property name="name"></property>
+</property>
+</Object>
 </Objects>
