@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects>
+  <Object Type="test">
+    <Property Name="param1" Type="System.String">1</Property>
+    <Property Name="param2" Type="System.Int32">2</Property>
+    <Property Name="param3" Type="System.Object[]">
+      <Property Type="System.Int32">1</Property>
+      <Property Type="System.Int32">2</Property>
+      <Property Type="System.Int32">3</Property>
+    </Property>
+    <Property Name="param4" Type="System.Management.Automation.PSCustomObject">
+      <Property Type="System.String">@{UserName=username; Database=database; Password=password; Server=server; Name=New}</Property>
+      <Property Name="UserName" Type="System.Management.Automation.PSNoteProperty">username</Property>
+      <Property Name="Database" Type="System.Management.Automation.PSNoteProperty">database</Property>
+      <Property Name="Password" Type="System.Management.Automation.PSNoteProperty">password</Property>
+      <Property Name="Server" Type="System.Management.Automation.PSNoteProperty">server</Property>
+      <Property Name="Name" Type="System.Management.Automation.PSNoteProperty">New</Property>
+    </Property>
+    <Property Name="param5" Type="System.Collections.Hashtable">
+      <Property Name="Key" Type="System.String">blueapple</Property>
+      <Property Name="Value" Type="System.Collections.Hashtable">
+        <Property Name="Key" Type="System.String">greenapple</Property>
+        <Property Name="Value" Type="System.Collections.Hashtable">
+          <Property Name="Key" Type="System.String">color</Property>
+          <Property Name="Value" Type="System.String">green</Property>
+          <Property Name="Key" Type="System.String">type</Property>
+          <Property Name="Value" Type="System.String">fruit</Property>
+          <Property Name="Key" Type="System.String">name</Property>
+          <Property Name="Value" Type="System.String">greenapple</Property>
+        </Property>
+        <Property Name="Key" Type="System.String">color</Property>
+        <Property Name="Value" Type="System.String">blue</Property>
+        <Property Name="Key" Type="System.String">type</Property>
+        <Property Name="Value" Type="System.String">fruit</Property>
+        <Property Name="Key" Type="System.String">name</Property>
+        <Property Name="Value" Type="System.String">blueapple</Property>
+      </Property>
+      <Property Name="Key" Type="System.String">color</Property>
+      <Property Name="Value" Type="System.String">red</Property>
+      <Property Name="Key" Type="System.String">type</Property>
+      <Property Name="Value" Type="System.String">fruit</Property>
+      <Property Name="Key" Type="System.String">name</Property>
+      <Property Name="Value" Type="System.String">apple</Property>
+    </Property>
+  </Object>
+</Objects>

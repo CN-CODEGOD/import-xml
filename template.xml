@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Objects>
+  <object type="test">
+    <property name="string">string</property>
+    <property name="int">1</property>
+    <property name="array">
+      <value>1</value>
+      <value>2</value>
+      <value>3</value>
+    </property>
+    <property name="test">
+      <property name="database">database</property>
+      <property name="username">username</property>
+      <property name="password">password</property>
+    </property>
+  </object>
+  <object type="test">
+    <property name="string">string</property>
+    <property name="int">1</property>
+    <property name="array">
+      <value>1</value>
+      <value>2</value>
+      <value>3</value>
+    </property>
+    <property name="test">
+      <property name="database">database</property>
+      <property name="username">username</property>
+      <property name="password">password</property>
+    </property>
+  </object>
+  <object />
+</Objects>

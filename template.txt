@@ -1,0 +1,36 @@
+.
+  <Object Type="test">
+    <Property Name="param1" Type="System.String">
+    
+    <Value>1</Value>
+    </Property>
+    <Property Name="param2" Type="System.Int32">
+    <Value>1</Value>
+  
+
+    </Property>
+    <Property Name="param3" Type="array">
+    <Value>1</Value>
+    <Value>2</Value>
+    <Value>3</Value>
+    </Property>
+    <Property Name="param4" Type="System.Management.Automation.PSCustomObject">
+  <noteProperty name = "database"></Property>
+  <noteProperty name = "server"></Property>
+  <noteProperty name = "name"></Property>
+  <noteProperty name = "username"></Property>
+  <noteProperty name = "password"></Property>
+    </Property>
+    <Property Name="param5" Type="System.Collections.Hashtable">
+      <key Name="type">fruit</Property>
+      
+      <key Name="color">red</Property>
+      
+      <Property name="green apple" type="System.Collections.Hashtable">
+
+      
+      
+    </Property>
+  </Object>
+</Objects>
+
