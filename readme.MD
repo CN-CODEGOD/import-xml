@@ -12,7 +12,9 @@ save-object -object [object] save the object to its  path
 
 To write the import-xml you need the certain CODE inside your class to initialize with import-xml
 
-## save method
+## initialize
+
+## 1.save method
 
 to save object you need to add a SAVE method to initialize with save-object 
 
@@ -44,7 +46,7 @@ this is the template of the save method
 ```
 
 
-## path
+## 2.path
 
 the default of the path property, the import-xml will find the path property and store the object 
 
@@ -52,3 +54,16 @@ if the path dosen't exist ,import-object will create a new path
 
 you can get the store of the current object using import-xml $object.path
 
+## 3.initializer
+
+in order to intialize and rehydration you need a add a construct in the class 
+the construct could use pscutomobject to intialize 
+```
+[void] DoInit(    [pscustomobject]$pscustomobject){
+        $pscustomobjectName= (($pscustomobject)|Get-Member -Type NoteProperty ).Name
+        foreach($propertyName in $pscustomobjectName ){
+
+           $this.$Propertyname= $pscustomobject.$Propertyname
+        }
+    }
+    ```
