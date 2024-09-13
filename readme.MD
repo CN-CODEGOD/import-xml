@@ -21,6 +21,7 @@ to save object you need to add a SAVE method to initialize with save-object
 this is the template of the save method 
 
 ```
+using namespace system.xml.linq
 [object] save(){
     
     $object = [xelement]::new("object",[System.Xml.Linq.XAttribute]::new("type","road"),

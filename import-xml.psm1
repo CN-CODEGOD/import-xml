@@ -147,23 +147,40 @@ https://github.com/CN-CODEGOD/import-xml.git
 
 function save-object($object){
     $doc=New-Object System.Xml.XmlDocument
+
+
+    
     if(!(test-path $object.path)){
+      
+        try {
+        $directory =((get-item ($object.path)).Directory).FullName
+         md $directory\xml   
+        }
+        catch {
+            
+        }
         $xmlsettings=new-object system.xml.xmlwritersettings
         $xmlsettings.indent=$true
         $xmlwriter=[system.xml.xmlwriter]::Create($object.path,$xmlsettings)
         $xmlwriter.writestartelement("objects")
+
         $xmlwriter.flush()
         $xmlwriter.close()
         
     }
     
-    $doc.load($object.path)
-    $newnode= $doc.CreateDocumentFragment()
-    $newnode.InnerXml=$object.save()
-    $doc.objects.appendchild($newnode)
-    $doc.Save($road1.path)
+    
+        $doc.load($object.path)
+        $newnode= $doc.CreateDocumentFragment()
+        $newnode.InnerXml=$object.save()
+        $doc.DocumentElement.AppendChild($newnode)
+        $doc.Save($object.path)
+    
+
+
     write "成功添加"
     
-    }
+    
 
+}
     
