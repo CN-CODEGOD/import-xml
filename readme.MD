@@ -1,65 +1,23 @@
-# import-xml
+I have try to import the object with clixml ,it doesn't work well
 
-save manage import your class object 
-the import-xml  will imoport object you save
-the path of the saved object was default  $psscriptroot\xml
+so i try my own module ,if you want to recreate the object and save the object for use .
 
-# 
-import-xml -path [path] import the object from path
-save-object -object [object] save the object to its  path 
+this is the right module for you
 
-# guidance
+git hub :https://github.com/CN-CODEGOD/import-xml
 
-To write the import-xml you need the certain CODE inside your class to initialize with import-xml
+To store the object, you need to add some code inside the class
 
-## initialize
+1.path property
 
-## 1.save method
+the path property will tell the module where to store your object
 
-to save object you need to add a SAVE method to initialize with save-object 
+you can use import-xml $object.path to import the object from xml
 
-this is the template of the save method 
+2.initialize
 
-```
-using namespace system.xml.linq
-[object] save(){
-    
-    $object = [xelement]::new("object",[System.Xml.Linq.XAttribute]::new("type","road"),
-        [xelement]::new("property",[XAttribute]::new("name","roadcoordinate"),
-            [xelement]::new("property",[XAttribute]::new("name","roadcoordinate1"),
-                [xelement]::new("property",[XAttribute]::new("name","x"),$this.roadcoordinate.roadcoordinate1.X),
-                [xelement]::new("property",[XAttribute]::new("name","y"),$this.roadcoordinate.roadcoordinate1.Y),
-                [xelement]::new("property",[XAttribute]::new("name","z"),$this.roadcoordinate.roadcoordinate1.Z)
-            ),
-          [xelement]::new("property",[XAttribute]::new("name","roadcoordinate2"),
-                [xelement]::new("property",[XAttribute]::new("name","x"),$this.roadcoordinate.roadcoordinate2.X),
-                [xelement]::new("property",[XAttribute]::new("name","y"),$this.roadcoordinate.roadcoordinate2.Y),
-                [xelement]::new("property",[XAttribute]::new("name","z"),$this.roadcoordinate.roadcoordinate2.Z)
-            )
+to iniitialize the object you need to add a contruct flowing
 
-        ),
-        [xelement]::new("property",[XAttribute]::new("name","name"),$this.name),
-        [xelement]::new("property",[XAttribute]::new("name","dimension"),$this.dimension),
-        [xelement]::new("property",[XAttribute]::new("name","id"),$this.id)
-    )
-    return $object.tostring()
-}
-```
-
-
-## 2.path
-
-the default of the path property, the import-xml will find the path property and store the object 
-
-if the path dosen't exist ,import-object will create a new path 
-
-you can get the store of the current object using import-xml $object.path
-
-## 3.initializer
-
-in order to intialize and rehydration you need a add a construct in the class 
-the construct could use pscutomobject to intialize 
-```
 [void] DoInit(    [pscustomobject]$pscustomobject){
         $pscustomobjectName= (($pscustomobject)|Get-Member -Type NoteProperty ).Name
         foreach($propertyName in $pscustomobjectName ){
@@ -67,4 +25,30 @@ the construct could use pscutomobject to intialize
            $this.$Propertyname= $pscustomobject.$Propertyname
         }
     }
-    ```
+3.save method
+
+to save the object ,you need to add a save method inside the object manually,which will generate the xml from object
+
+here is a simple example
+
+[object] save(){
+    
+    $object= [XElement]::new("object",[XAttribute]::new("type","password"),
+    [XElement]::new("property",[XAttribute]::new("name","username"),$this.username),
+    [XElement]::new("property",[XAttribute]::new("name","password"),$this.password)
+    
+    )
+    return $object.ToString()
+
+}
+to learn more go to check my my github page https://gist.github.com/CN-CODEGOD/dd415e0ab67f5f900982bfa227b11c47
+
+advantage :
+
+1.you can simply create the object and save easily,and use it in future
+
+2.since it was a xml file , you can use the xml file in your website or in other language like js or node without problem
+
+3.it can manage the object with saving and import
+
+i will appreciate it if you can Forward my project to others

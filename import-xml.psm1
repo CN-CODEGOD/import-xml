@@ -1,3 +1,13 @@
+
+$paths= $env:classpath -split ";"
+# 逐一加载脚本
+try {
+    $paths|% {. $_}     
+}
+catch {
+    <#Do this if a terminating exception happens#>
+}
+
 <#
 .SYNOPSIS
 import object from xml
@@ -92,6 +102,7 @@ elseif ($property.key) {
     }
          
 function import-xml($path){
+
 [xml]$xml=cat $path
 foreach($object in $xml.objects.object){
     New-Object -TypeName $object.type -ArgumentList (rehydrate $object)
