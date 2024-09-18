@@ -1,13 +1,3 @@
-
-$paths= $env:classpath -split ";"
-# 逐一加载脚本
-try {
-    $paths|% {. $_}     
-}
-catch {
-    <#Do this if a terminating exception happens#>
-}
-
 <#
 .SYNOPSIS
 import object from xml
@@ -102,7 +92,6 @@ elseif ($property.key) {
     }
          
 function import-xml($path){
-
 [xml]$xml=cat $path
 foreach($object in $xml.objects.object){
     New-Object -TypeName $object.type -ArgumentList (rehydrate $object)
@@ -158,40 +147,51 @@ https://github.com/CN-CODEGOD/import-xml.git
 
 function save-object($object){
     $doc=New-Object System.Xml.XmlDocument
-
-
-    
     if(!(test-path $object.path)){
-      
-        try {
-        $directory =((get-item ($object.path)).Directory).FullName
-         md $directory\xml   
-        }
-        catch {
-            
-        }
         $xmlsettings=new-object system.xml.xmlwritersettings
         $xmlsettings.indent=$true
         $xmlwriter=[system.xml.xmlwriter]::Create($object.path,$xmlsettings)
         $xmlwriter.writestartelement("objects")
-
         $xmlwriter.flush()
         $xmlwriter.close()
-        
+        write "创建新xml 表"
+       
+
+
     }
     
-    
+
         $doc.load($object.path)
         $newnode= $doc.CreateDocumentFragment()
+        
+        $id= [int]($doc.objects.LastChild.id) + 1
+   
+    
+        $attributeid=$doc.CreateAttribute("id")
+        $attributeid.Value=$id
         $newnode.InnerXml=$object.save()
-        $doc.DocumentElement.AppendChild($newnode)
+        $doc.DocumentElement.appendchild($newnode)
+        $nodeelement = $doc.objects.LastChild
+        $nodeelement.attributes.append($attributeid)
+
+
+
+
         $doc.Save($object.path)
+        write "成功添加"
+        
+
     
 
+    }
 
-    write "成功添加"
     
-    
-
-}
-    
+    function remove-object {
+        [CmdletBinding()]
+        param (
+            [Parameter()]
+            [int]
+            $id 
+        )
+        
+    }
