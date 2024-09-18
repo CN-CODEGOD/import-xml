@@ -186,12 +186,52 @@ function save-object($object){
     }
 
     
-    function remove-object {
+  
+    function export-object {
         [CmdletBinding()]
         param (
             [Parameter()]
-            [int]
-            $id 
-        )
+            [object]
+            $objects 
+            ,
+            # Parameter help description
+            [Parameter()]
+            [string]
+            $Path)
+            $doc=New-Object System.Xml.XmlDocument
+            del $path
+
+            $xmlsettings=new-object system.xml.xmlwritersettings
+            $xmlsettings.indent=$true
+            $xmlwriter=[system.xml.xmlwriter]::Create($path,$xmlsettings)
+            $xmlwriter.writestartelement("objects")
+            $xmlwriter.flush()
+            $xmlwriter.close()
+            write "创建新xml 表"      
+  foreach ($object in $objects) {
+            $doc.load($path)
+            $newnode= $doc.CreateDocumentFragment()
+            
+            $id= [int]($doc.objects.LastChild.id) + 1
+       
+        
+            $attributeid=$doc.CreateAttribute("id")
+            $attributeid.Value=$id
+            $newnode.InnerXml=$object.save()
+            $doc.DocumentElement.appendchild($newnode)
+            $nodeelement = $doc.objects.LastChild
+            $nodeelement.attributes.append($attributeid)
+    
+    
+    
+    
+            $doc.Save($path)
+            write "成功添加"
+            
+        }
+    
+    
+    
+        
         
     }
