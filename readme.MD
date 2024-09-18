@@ -52,3 +52,12 @@ advantage :
 3.it can manage the object with saving and import
 
 i will appreciate it if you can Forward my project to others
+
+4. export-object 
+
+export object\objects in a xml file 
+
+
+eg
+
+export-object -object  $objecs -path c:\text.xml
