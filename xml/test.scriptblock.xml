@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+  <object type="testinstance" id="1">
+    <property name="scriptblock"><![CDATA[ Write-Output "Hello, World!" ]]></property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="testinstance" id="2">
+    <property name="scriptblock"><![CDATA[ Write-Output "Hello, World!" ]]></property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="testinstance" id="3">
+    <property name="scriptblock"><![CDATA[ Write-Output "Hello, World!" ]]></property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="testinstance" id="4">
+    <property name="scriptblock"><![CDATA[ Write-Output "Hello, World!" ]]></property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="testinstance" id="5">
+    <property name="scriptblock"><![CDATA[ Write-Output "Hello, World!" ]]></property>
+    <property name="name">sample name</property>
+  </object>
+</objects>
+</objects>

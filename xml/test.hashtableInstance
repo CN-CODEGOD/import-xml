@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+  <object type="hashtable_instance" id="1">
+    <property name="hashtable">[key2, value2][key1, value1]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="2">
+    <property name="hashtable">[key1, value1][key2, value2]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="3">
+    <property name="hashtable">[key1, value1][key2, value2]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="4">
+    <property name="hashtable">[key1, value1][key2, value2]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="5">
+    <property name="hashtable">[key2, value2][key1, value1]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="6">
+    <property name="hashtable"><property name=key></property></property>
+    <property name="name">sample name</property>
+  </object>
+
+  <object type="hashtable_instance" id="8">
+    <property name="hashtable">
+   @{
+    a=1
+    b=2
+   }
+    </property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="9">
+    <property name="hashtable">[key2, value2][key1, value1]</property>
+    <property name="name">sample name</property>
+  </object>
+  <object type="hashtable_instance" id="10">
+  <property name="hashtable">[key1, value1][key2, value2]</property>
+  <property name="name">sample name</property>
+</object>
+</objects>
