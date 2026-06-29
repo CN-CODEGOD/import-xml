@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+  <object type="nested_Instance" id="1">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="2">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="3">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="4">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="5">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="6">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="7">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="8">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="9">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="10">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="11">
+    <property name="testInstance">
+      <property name="name">sample Name</property>
+      <property name="txt">sample Text</property>
+    </property>
+    <property name="name">test</property>
+  </object>
+  <object type="nested_Instance" id="12">
+  <property name="testInstance">
+    <property name="name">sample Name</property>
+    <property name="txt">sample Text</property>
+  </property>
+  <property name="name">test</property>
+</object>
+</objects>

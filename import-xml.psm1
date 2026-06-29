@@ -22,82 +22,8 @@ import object from xml
 https://github.com/CN-CODEGOD/import-xml.git
 
 #>
-
-
-function rehydrate([System.Xml.XmlElement]$object) {
-    if (($object -ne $null) -and ($null -ne $object.property)) {
-        $psobject = New-Object pscustomobject
-        
-        foreach ($property in $object.property) {
-            if ($property.property.name -eq 'property') {
-                $psobject | Add-Member NoteProperty $property.name ($property.property | % { rehydrate $_ })
-            }
-            elseif ($property.Value) {
-                $a = @()
-                foreach ($value in $property.value) {
-                    $a += $value
-                }
-                $psobject | Add-Member NoteProperty $property.name $a
-            }
-            elseif ($property.key) {
-                $hashtable = @{}
-                foreach ($key in $property.key) {   
-                    $hashtable[$key.name] = $key.innertext
-                }
-                $psobject | Add-Member NoteProperty $property.name $hashtable
-            }
-            elseif ($null -ne $property.'#text') {
-                $psobject | Add-Member NoteProperty $property.name $property.'#text'
-            }
-            else {
-                if ($null -ne $property.name -and $property.property) {
-                    $psobject | Add-Member NoteProperty $property.name (rehydrate $property)
-                }
-                else {
-                    $psobject | Add-Member NoteProperty $property.name $null
-                }
-            }
-        }
-        
-        $psobject
-    }
-}
-function Import-Xml {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory = $true)]
-        [ValidateScript({Test-Path $_})]
-        [string]$Path
-    )
-
-    try {
-        [xml]$xml = Get-Content -Path $Path -ErrorAction Stop
-        
-        foreach($object in $xml.objects.object) {
-            $objectType = $object.type
-            if ([string]::IsNullOrEmpty($objectType)) {
-                Write-Warning "Object type not specified in XML"
-                continue
-            }
-
-            try {
-                $instance = New-Object -TypeName $objectType -ErrorAction Stop
-                $pscustomObject = rehydrate $object
-                $instance.doinit($pscustomObject)
-                $instance
-            }
-            catch {
-                Write-Error "Failed to create instance of type '$objectType': $_"
-            }
-        }
-    }
-    catch {
-        Write-Error "Failed to process XML file '$Path': $_"
-    }
-}
-
-
-
+. "$PSScriptRoot/rehydrate.ps1"
+. "$PSScriptRoot/test.class.ps1"
 
 
 
@@ -113,31 +39,43 @@ function Import-Xml {
 
 
 
-      
+function Import-Xml {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        
+        [string]$Path
+    )
+
+   
+         [xml]$xml = Get-Content -Path $Path 
+        
+        foreach($object in $xml.objects.object) {
+            $objectType = $object.name 
+            if ([string]::IsNullOrEmpty($objectType)) {
+                Write-Warning "Object type not specified in XML"
+                continue
+            }
+
+            try {
+                $pscustomObject = rehydrate $object
+                $instance = New-Object -TypeName $objectType -argumentList $pscustomobject 
+          
+                
+                return $instance
+                
+            }
+            catch {
+                Write-Error "Failed to create instance of type '$objectType': $_"
+            }
+        }
+    
+    
+}
 
 
 
 
-
-<#
-.SYNOPSIS
-save your object in XML
-
-.DESCRIPTION
-save object with save-object 
-
-.PARAMETER 参数名
--path save path
-
-.EXAMPLE
-$object |save-object
-
-.NOTES
-cn_codegod
-.LINK
-https://github.com/CN-CODEGOD/import-xml.git
-
-#>
 
 function save-object($object){ 
     $doc=New-Object System.Xml.XmlDocument
@@ -239,7 +177,7 @@ function save-object($object){
         }
     }
 
-
+<#
     function xml-csv {
       
 param($Path,$literalpath)
@@ -288,3 +226,4 @@ $xml=
 
         
     }
+#>

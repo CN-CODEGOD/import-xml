@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+  <object name="arrayInstance" id="1">
+    <property name="array">
+      <array>
+        <value index="0">1</value>
+        <value index="1">2</value>
+        <value index="2">3</value>
+        <value index="3">4</value>
+        <value index="4">5</value>
+      </array>
+    </property>
+    <property name="text">Text</property>
+  </object>
+  <object name="arrayInstance" id="2">
+    <property name="array">
+      <array>
+        <value index="0">1</value>
+        <value index="1">2</value>
+        <value index="2">3</value>
+        <value index="3">4</value>
+        <value index="4">5</value>
+      </array>
+    </property>
+    <property name="text">Text</property>
+  </object>
+  <object name="arrayInstance" id="3">
+  <property name="array">
+    <array>
+      <value index="0">1</value>
+      <value index="1">2</value>
+      <value index="2">3</value>
+      <value index="3">4</value>
+      <value index="4">5</value>
+    </array>
+  </property>
+  <property name="text">Text</property>
+</object>
+</objects>
