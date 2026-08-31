@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+<object name="nestedInstance" id="1">
+  <property name="testInstance">
+    <property name="text">default text</property>
+    <property name="name">default name</property>
+  </property>
+  <property name="text">text</property>
+</object>
+</objects>  

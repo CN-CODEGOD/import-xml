@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<objects>
+  <object name="hashtableInstance" id="1">
+  
+    <property name="hash">
+      <hashtable>
+        <key name="key2">value2</key>
+        <key name="key1">value1</key>
+      </hashtable>
+    </property>
+    <property name="text">text</property>
+  </object>
+  <object name="hashtableInstance" id="2">
+    <property name="hash">
+      <hashtable>
+        <key name="key2">value2</key>
+        <key name="key1">value1</key>
+      </hashtable>
+    </property>
+    <property name="text">text</property>
+  </object>
+  <object name="nestedInstance" id="1">
+    <property name="testInstance">
+      <property name="txt">default text</property>
+      <property name="name">default name</property>
+    </property>
+    <property name="text">text</property>
+  </object>
+  <object name="hashtableInstance" id="2">
+  <property name="hash">
+    <hashtable>
+      <key name="key2">value2</key>
+      <key name="key1">value1</key>
+    </hashtable>
+  </property>
+  <property name="text">text</property>
+</object>
+</objects>
