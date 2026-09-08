@@ -25,16 +25,15 @@ $intializePsobject|add-member Noteproperty -Name $property.name -Value $hashobje
 
                 
 
-                elseif($null -ne $property.array){
-$arrayObject=@()
-foreach($value in ($property.array.value)){
-    $arrayobject+=($_)
+  elseif ($null -ne $property.array) {
+    $arrayObject = @()
+    foreach ($value in $property.array.value) {
+        $arrayObject += $value.InnerText
+    }
+    $intializePsobject | Add-Member NoteProperty -Name $property.name -Value $arrayObject
 }
-$intializePsobject |add-member noteproperty -Name $property.name -Value $arrayObject
-                }
-
                 elseif($null -ne $property.scriptblock){
-                    $scriptblockObject ={$property.scripblock."#text"}
+                    $scriptblockObject = [scriptblock]::Create($property.scriptblock)
                     
                     $intializePsobject |add-member noteproperty -Name $property.name -Value $scriptblockObject
                 }

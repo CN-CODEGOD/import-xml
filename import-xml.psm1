@@ -62,7 +62,7 @@ function Import-Xml {
                 $instance = New-Object -TypeName $objectType -argumentList $pscustomobject 
           
                 
-                return $instance
+                $instance
                 
             }
             catch {
