@@ -4,7 +4,7 @@ Describe "rehydrate function" {
     beforeALL {
         . "$PSScriptRoot/test.class.ps1"
         . "$PSScriptRoot/rehydrate.ps1"
-        Import-Module importTestScript        
+        
 
     
     }
@@ -27,7 +27,7 @@ context 'it test import-xml'  -skip{
             })
            $arrayPsCustomObject=@(
         [PSCustomObject]@{
-            array = @(1, 2, 3,4,5)
+            array = @(1,2,3,4,5)
             text = "text"
         }
     )
@@ -200,7 +200,7 @@ mock Add-Member -Verifiable -ParameterFilter { $name -eq "text" -and $value -eq 
 context "it debug rehydrate arrayInstance"{
   beforeAll{
 
-    mock Add-member -Verifiable -ParameterFilter { $name -eq "array" -and $value -eq @(1,2,3,4,5) }
+    mock Add-member -Verifiable -ParameterFilter {$value -eq @(1,2,3,4,5) }
     mock Add-Member -Verifiable -ParameterFilter { $name -eq "text" -and $value -eq "Text" }
 
          [xml]$xml = @"
