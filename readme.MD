@@ -10,103 +10,40 @@ import-xml 利用 特殊的instance 类（可import-xml类）把整个powershell
 import-xml 可以保存powershell类重构，保存类可以包含method,所以我们可以利用xml保存一个功能类，并重构
 例子：
 ```
-class survival_place {
- [System.Numerics.Vector3]$placecoordinate
-   [dimension]$dimension
-   [place_type]$type
-   [int]$id
-   hidden $path = "$PSScriptRoot\xml\survival_place.xml"
+class hashtableInstance {
+    [hashtable]$hash
+    [string]$text
+    hidden[string]$path= "$PSScriptRoot/xml/hashobject.xml"
+    <# Define the class. Try constructors, properties, or methods. #>
 
-   ### construct 
-survival_place ($properties) {
+  [void] DoInit() {
+        # Empty DoInit method to init new-object
+    }
+    [void] DoInit(    [pscustomobject]$pscustomobject){
+        $pscustomobjectName= (($pscustomobject)|Get-Member -Type NoteProperty ).Name
+        foreach($propertyName in $pscustomobjectName ){
 
-   $this.DoInit($properties)
-}
-   
-   ### Method
-#### DoInit
-[void]DoInit ($value){ 
-   [int32]$attempt=-1
-   if ([int32]::TryParse($value,[ref]$attempt))
-   {
-       $this.id=$attempt
-   }
-   else
-   {   
-       $this.id  =-1
-       $this.type=$value
-   }
-}
-#### Doinit
-[void]DoInit ([hashtable]$properties){
+           $this.$Propertyname= $pscustomobject.$Propertyname
+        }
+    }
+    hashtableInstance() {
+        $this.hash= @{key1="value1"; key2="value2"}
+        $this.text = 'text'
+    }
+    hashtableInstance([pscustomobject]$pscustomobject){
 
-   ForEach($property IN $properties.keys) {
-       $this.$property=$properties.$property
-   }
-}
-[void]DoInit ([pscustomobject]$pscustomobject){
-       $pscustomobjectName= (($pscustomobject)|Get-Member -Type NoteProperty ).Name
-       foreach($propertyName in $pscustomobjectName ){
-
-          $this.$Propertyname= $pscustomobject.$Propertyname
-       }
-   }
-   [Object]save(){
-
-       $object = [XElement]::new("object",[XAttribute]::new("name","survival_place"),
-
-       [XElement]::new("property",[XAttribute]::new("name","placecoordinate"),
-       [XElement]::new("property",[XAttribute]::new("name","x"),$this.placecoordinate.x),
-       [XElement]::new("property",[XAttribute]::new("name","y"),$this.placecoordinate.y),
-       [XElement]::new("property",[XAttribute]::new("name","z"),$this.placecoordinate.z)
-
-       
-       
-       ),
-       [XElement]::new("property",[XAttribute]::new("name","dimension"),$this.dimension),
-       [XElement]::new("property",[XAttribute]::new("name","type"),$this.type),
-       [XElement]::new("property",[XAttribute]::new("name","id"),$this.id)
-       )
-       return $object.ToString()
-   }
-
-#### validation mathod for repeat adding
-  static [void]validate ([survival_place]$survival_place,[int]$distance_limit){
-       $survival_places = Import-xml $PSScriptRoot\xml\survival_places.xml|Where-Object {$_.type -like $survival_place.type -and $_.dimension -like $survival_place.dimension}
-   
-     $survival_places|foreach-object {
-      $distance= [System.Numerics.Vector3]::Distance($survival_place.placecoordinate,$_.placecoordinate)
-
-       if ($distance -lt $distance_limit) {
-           throw "坐标重复"
-       }
-        
-     }
+        $this.doinit($pscustomobject)
+    }
+   [object] save(){
+        $hashproperty= ($this.hash.GetEnumerator()) 
+        $hashxml=[xelement]::new("hashtable", ($hashproperty | ForEach-Object { [XElement]::new("key", $_.Value, [XAttribute]::new("name", $_.Key)) }))
+        $content=[xelement]::new("object",[XAttribute]::new("name","hashtableInstance"),[XObject[]]@([XElement]::new("property",[XAttribute]::new("name","hash"),($hashxml)),[XElement]::new("property",[XAttribute]::new("name","text"),$this.text)))
 
 
-   }
-
+        return $content.ToString()
+    }
 }
 ```
-```
-#### validation mathod for repeat adding
-  static [void]validate ([survival_place]$survival_place,[int]$distance_limit){
-       $survival_places = Import-xml $PSScriptRoot\xml\survival_places.xml|Where-Object {$_.type -like $survival_place.type -and $_.dimension -like $survival_place.dimension}
-   
-     $survival_places|foreach-object {
-      $distance= [System.Numerics.Vector3]::Distance($survival_place.placecoordinate,$_.placecoordinate)
-
-       if ($distance -lt $distance_limit) {
-           throw "坐标重复"
-       }
-        
-     }
-
-
-   }
-```
-可以直接使用类的方法，方便打包，整洁程序，更干净
-
 
 
 
@@ -153,23 +90,12 @@ survival_place ($properties) {
 在类中添加可以构建xml的方法
 
 ```
-  [Object]save(){
+  [object] save(){
+        $hashproperty= ($this.hash.GetEnumerator()) 
+        $hashxml=[xelement]::new("hashtable", ($hashproperty | ForEach-Object { [XElement]::new("key", $_.Value, [XAttribute]::new("name", $_.Key)) }))
+        $content=[xelement]::new("object",[XAttribute]::new("name","hashtableInstance"),[XObject[]]@([XElement]::new("property",[XAttribute]::new("name","hash"),($hashxml)),[XElement]::new("property",[XAttribute]::new("name","text"),$this.text)))
 
-       $object = [XElement]::new("object",[XAttribute]::new("name","survival_place"),
 
-       [XElement]::new("property",[XAttribute]::new("name","placecoordinate"),
-       [XElement]::new("property",[XAttribute]::new("name","x"),$this.placecoordinate.x),
-       [XElement]::new("property",[XAttribute]::new("name","y"),$this.placecoordinate.y),
-       [XElement]::new("property",[XAttribute]::new("name","z"),$this.placecoordinate.z)
-
-       
-       
-       ),
-       [XElement]::new("property",[XAttribute]::new("name","dimension"),$this.dimension),
-       [XElement]::new("property",[XAttribute]::new("name","type"),$this.type),
-       [XElement]::new("property",[XAttribute]::new("name","id"),$this.id)
-       )
-       return $object.ToString()
-   }
-
+        return $content.ToString()
+    }
 ```
